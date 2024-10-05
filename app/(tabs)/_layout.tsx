@@ -1,35 +1,32 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
-
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Tabs } from 'expo-router';
+import { Home, MessageCircle, Settings } from 'lucide-react-native'; // Import the icons you need
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <Home color={color} size={size} />, // Use the Home icon
+          tabBarLabel: () => null, // Remove the tab name
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="conversations"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <MessageCircle color={color} size={size} />, // Use the MessageCircle icon
+          tabBarLabel: () => null, // Remove the tab name
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => <Settings color={color} size={size} />, // Use the Settings icon
+          tabBarLabel: () => null, // Remove the tab name
         }}
       />
     </Tabs>
